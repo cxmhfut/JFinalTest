@@ -1,5 +1,6 @@
 package com.cxmhfut.controller;
 
+import com.cxmhfut.model.Blog;
 import com.jfinal.core.Controller;
 
 public class IndexController extends Controller {
@@ -10,6 +11,16 @@ public class IndexController extends Controller {
         String msg = getPara("msg", "defaultMessage");
         String values[] = getParaValues("test");//checkbox
         setAttr("msg", "Hello JFinal 3.0----->" + msg);
+        getModel(Blog.class);
         renderTemplate("index.html");
+    }
+
+    public void add() {
+        renderTemplate("add.html");
+    }
+
+    public void doAdd() {
+        System.out.println(getModel(Blog.class));
+        renderText("提交成功");
     }
 }
