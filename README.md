@@ -1,7 +1,15 @@
 # JFinalTest
 
 ##项目搭建过程
-
+- maven镜像配置
+```xml
+<mirror>
+    <id>alimaven</id>
+    <name>aliyun maven</name>
+    <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+    <mirrorOf>central</mirrorOf>        
+</mirror>
+```
 - pom.xml中配置填写JFinal的相关依赖描述
 ```xml
 <dependencies>
