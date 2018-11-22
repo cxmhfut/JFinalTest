@@ -1,6 +1,8 @@
 package com.cxmhfut.common;
 
+import com.cxmhfut.controller.BlogController;
 import com.cxmhfut.controller.IndexController;
+import com.cxmhfut.controller.UserController;
 import com.jfinal.config.*;
 import com.jfinal.core.JFinal;
 import com.jfinal.template.Engine;
@@ -8,12 +10,16 @@ import com.jfinal.template.Engine;
 public class MyConfig extends JFinalConfig {
     @Override
     public void configConstant(Constants constants) {
-
+        //设置为开发模式
+        constants.setDevMode(true);
     }
 
     @Override
     public void configRoute(Routes routes) {
-        routes.add("/", IndexController.class);
+        //routes.add("/", IndexController.class);
+        routes.add("/", IndexController.class, "/abc");
+        routes.add("/blog", BlogController.class, "/blog");
+        routes.add("/user", UserController.class, "/user");
     }
 
     @Override
@@ -38,5 +44,17 @@ public class MyConfig extends JFinalConfig {
 
     public static void main(String[] args) {
         JFinal.start("src/main/webapp", 8080, "/");
+    }
+
+    @Override
+    public void afterJFinalStart() {
+        super.afterJFinalStart();
+        System.out.println("afterJFinalStart...");
+    }
+
+    @Override
+    public void beforeJFinalStop() {
+        super.beforeJFinalStop();
+        System.out.println("beforeJFinalStop...");
     }
 }
