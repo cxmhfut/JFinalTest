@@ -1,6 +1,6 @@
 # JFinalTest
 
-项目搭建过程
+##项目搭建过程
 
 - pom.xml中配置填写JFinal的相关依赖描述
 ```xml
@@ -47,3 +47,11 @@
 - 建立Controller并继承自JFinal的Controller
 - 编写JFinal的启动方法，并启动项目
 - 浏览器中输入访问地址
+
+## Interceptor分类
+
+- Method Interceptor 方法级别
+- Class Interceptor 类级别
+- Router Interceptor 路由级别
+- Global Interceptor 全局拦截
+- Inject Interceptor 业务注入拦截器，对指定需要被注入的方法有效，可以是整个业务类，也可以是某个方法
