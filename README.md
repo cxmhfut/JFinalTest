@@ -63,3 +63,12 @@
 - Router Interceptor 路由级别
 - Global Interceptor 全局拦截
 - Inject Interceptor 业务注入拦截器，对指定需要被注入的方法有效，可以是整个业务类，也可以是某个方法
+
+拦截器栈，多个Interceptor组合使用的拦截器
+
+## Interceptor的优先级别
+
+- 1 GlobalInterceptor
+- 2 InjectInterceptor(InjectInterceptor RouteInterceptor)
+- 3 ClassInterceptor
+- 4 MethodInterceptor

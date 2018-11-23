@@ -50,6 +50,7 @@ public class MyConfig extends JFinalConfig {
     @Override
     public void configInterceptor(Interceptors interceptors) {
         interceptors.add(new GlobalInterceptor());
+        //interceptors.addGlobalServiceInterceptor(new InjectInterceptor());//给所有的Service添加拦截器
     }
 
     @Override
