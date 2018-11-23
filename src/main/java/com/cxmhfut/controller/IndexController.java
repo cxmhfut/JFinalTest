@@ -10,6 +10,9 @@ import com.jfinal.aop.Before;
 import com.jfinal.aop.Clear;
 import com.jfinal.aop.Duang;
 import com.jfinal.core.Controller;
+import com.jfinal.plugin.activerecord.Page;
+
+import java.util.List;
 
 @Before(ClassInterceptor.class)
 public class IndexController extends Controller {
@@ -30,8 +33,35 @@ public class IndexController extends Controller {
     }
 
     public void doAdd() {
-        System.out.println(getModel(Blog.class));
+        Blog blog = getModel(Blog.class);
+        blog.save();
         renderText("提交成功");
+    }
+
+    public void queryAllBlog() {
+        String sql = "select * from t_blog order by id desc";//不要在controller中写sql，此处仅为演示
+        List<Blog> blogs = Blog.dao.find(sql);
+        Blog blog1 = Blog.dao.findFirst(sql);
+
+        Blog blog = Blog.dao.findById("3");
+        System.out.println(blog.getStr("name"));
+        System.out.println(blog.getStr("desc"));
+        //分页查询数据记录
+        Page<Blog> pageBlog = Blog.dao.paginate(1, 1, "select * ", "from t_blog order by id desc");
+        renderJson(pageBlog);
+    }
+
+    public void update() {
+        Blog blog = new Blog();
+        blog.set("id", 3);
+        blog.set("name", "name_3");
+        blog.set("desc", "desc_3");
+        blog.update();
+        renderText("更新成功");
+    }
+
+    public void delete() {
+        Blog.dao.deleteById(4);
     }
 
     /**
