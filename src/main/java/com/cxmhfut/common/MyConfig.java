@@ -1,5 +1,6 @@
 package com.cxmhfut.common;
 
+import com.cxmhfut.interceptor.GlobalInterceptor;
 import com.cxmhfut.model.Blog;
 import com.cxmhfut.route.AdminRoute;
 import com.cxmhfut.route.FrontRoute;
@@ -48,7 +49,7 @@ public class MyConfig extends JFinalConfig {
 
     @Override
     public void configInterceptor(Interceptors interceptors) {
-
+        interceptors.add(new GlobalInterceptor());
     }
 
     @Override
