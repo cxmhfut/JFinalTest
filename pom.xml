@@ -36,6 +36,8 @@
             <groupId>com.jfinal</groupId>
             <artifactId>jetty-server</artifactId>
             <version>8.1.8</version>
+            <!-- 使用 IDEA 开发，scope 仍然得设置成为 compile，否则提示缺少 jar 包，在打包的时候记得要改回 provided，避免打进一些不需要的 jar 包 -->
+            <scope>compile</scope>
         </dependency>
         <!-- 连接池 -->
         <dependency>
