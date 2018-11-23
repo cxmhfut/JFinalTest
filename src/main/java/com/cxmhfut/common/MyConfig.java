@@ -7,6 +7,7 @@ import com.cxmhfut.route.FrontRoute;
 import com.jfinal.config.*;
 import com.jfinal.core.JFinal;
 import com.jfinal.ext.handler.ContextPathHandler;
+import com.jfinal.kit.PathKit;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
@@ -43,6 +44,10 @@ public class MyConfig extends JFinalConfig {
         plugins.add(druidPlugin);
 
         ActiveRecordPlugin arp = new ActiveRecordPlugin(druidPlugin);
+
+        arp.setBaseSqlTemplatePath(PathKit.getWebRootPath()+"/WEB-INF");
+        arp.addSqlTemplate("sql/demo.sql");
+
         arp.addMapping("t_blog", Blog.class);
         plugins.add(arp);
     }
