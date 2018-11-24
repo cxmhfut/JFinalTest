@@ -12,6 +12,7 @@ import com.jfinal.kit.PathKit;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
+import com.jfinal.plugin.ehcache.EhCachePlugin;
 import com.jfinal.template.Engine;
 
 public class MyConfig extends JFinalConfig {
@@ -55,6 +56,8 @@ public class MyConfig extends JFinalConfig {
 
         arp.addMapping("t_blog", Blog.class);
         plugins.add(arp);
+
+        plugins.add(new EhCachePlugin());
     }
 
     @Override
