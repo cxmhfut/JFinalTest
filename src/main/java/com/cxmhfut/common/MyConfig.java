@@ -11,6 +11,7 @@ import com.jfinal.ext.handler.ContextPathHandler;
 import com.jfinal.kit.PathKit;
 import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
+import com.jfinal.plugin.cron4j.Cron4jPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.plugin.ehcache.EhCachePlugin;
 import com.jfinal.template.Engine;
@@ -18,9 +19,9 @@ import com.jfinal.template.Engine;
 public class MyConfig extends JFinalConfig {
     @Override
     public void configConstant(Constants constants) {
-        PropKit.use("db.properties");
+        PropKit.use("config.properties");
         //设置为开发模式
-        constants.setDevMode(true);
+        constants.setDevMode(PropKit.getBoolean("devMode"));
     }
 
     @Override
@@ -57,7 +58,12 @@ public class MyConfig extends JFinalConfig {
         arp.addMapping("t_blog", Blog.class);
         plugins.add(arp);
 
+        //缓存插件
         plugins.add(new EhCachePlugin());
+
+        //任务调度插件
+        Cron4jPlugin cron4jPlugin = new Cron4jPlugin("cron4j.properties","cron4j");
+        plugins.add(cron4jPlugin);
     }
 
     @Override
