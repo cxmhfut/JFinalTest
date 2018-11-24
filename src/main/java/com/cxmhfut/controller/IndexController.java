@@ -122,4 +122,8 @@ public class IndexController extends Controller {
     public void testInterceptorStack() {
         renderTemplate("index.html");
     }
+
+    public void testTemplate(){
+        renderTemplate("template-test.html");
+    }
 }

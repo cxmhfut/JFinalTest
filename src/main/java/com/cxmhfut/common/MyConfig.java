@@ -4,8 +4,9 @@ import com.cxmhfut.interceptor.GlobalInterceptor;
 import com.cxmhfut.model.Blog;
 import com.cxmhfut.route.AdminRoute;
 import com.cxmhfut.route.FrontRoute;
+import com.cxmhfut.service.ShareMethod;
+import com.cxmhfut.service.ShareObject;
 import com.jfinal.config.*;
-import com.jfinal.core.JFinal;
 import com.jfinal.ext.handler.ContextPathHandler;
 import com.jfinal.kit.PathKit;
 import com.jfinal.kit.PropKit;
@@ -33,7 +34,11 @@ public class MyConfig extends JFinalConfig {
 
     @Override
     public void configEngine(Engine engine) {
-
+        engine.setBaseTemplatePath(PathKit.getWebRootPath());
+        engine.addSharedFunction("/front/common.html");
+        engine.addSharedStaticMethod(ShareObject.class);
+        engine.addSharedMethod(new ShareMethod());
+        engine.addSharedObject("sm",new ShareMethod());
     }
 
     @Override
@@ -62,10 +67,6 @@ public class MyConfig extends JFinalConfig {
     public void configHandler(Handlers handlers) {
         //创建上下文
         handlers.add(new ContextPathHandler("ctx"));
-    }
-
-    public static void main(String[] args) {
-        JFinal.start("src/main/webapp", 8080, "/");
     }
 
     @Override
