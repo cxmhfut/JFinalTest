@@ -34,6 +34,17 @@ public class IndexController extends Controller {
         renderTemplate("add.html");
     }
 
+    public void login(){
+        renderTemplate("login.html");
+    }
+
+    public void doLogin(){
+        String username = getPara("username");
+        String password = getPara("password");
+        System.out.println(username);
+        System.out.println(password);
+    }
+
     public void doAdd() {
         Blog blog = getModel(Blog.class);
 
